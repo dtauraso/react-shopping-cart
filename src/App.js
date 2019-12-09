@@ -6,6 +6,7 @@ import data from './data';
 import Navigation from './components/Navigation';
 import Products from './components/Products';
 import ShoppingCart from './components/ShoppingCart';
+// import { remove } from 'jest-util/build/preRunMessage';
 
 function App() {
 	const [products] = useState(data);
@@ -13,7 +14,16 @@ function App() {
 
 	const addItem = item => {
 		// add the given item to the cart
+		setCart([...cart, item])
+		
 	};
+
+	const removeItem = item => {
+		// console.log(item)
+
+		cart.splice(item.i, 1)
+		// console.log(cart)
+	}
 
 	return (
 		<div className="App">
@@ -33,7 +43,7 @@ function App() {
 
 			<Route
 				path="/cart"
-				render={() => <ShoppingCart cart={cart} />}
+				render={() => <ShoppingCart cart={cart} removeItem={removeItem}/>}
 			/>
 		</div>
 	);
