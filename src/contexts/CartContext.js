@@ -1,6 +1,8 @@
-import React from 'react';
+import { createContext } from 'react';
 
 // Components
+export const CartContext = createContext()
+
 // import Item from './ShoppingCartItem';
 
 // const ShoppingCart = props => {
