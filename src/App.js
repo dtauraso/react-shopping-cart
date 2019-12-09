@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import data from './data';
+import { ProductContext } from "./contexts/ProductContext";
 
 // Components
 import Navigation from './components/Navigation';
@@ -18,6 +19,7 @@ function App() {
 		
 	};
 
+	// apparently this was a stretch goal
 	const removeItem = item => {
 		// console.log(item)
 
@@ -30,21 +32,26 @@ function App() {
 			<Navigation cart={cart} />
 
 			{/* Routes */}
+			<ProductContext.Provider value={{products, addItem}}>
+
 			<Route
 				exact
 				path="/"
-				render={() => (
-					<Products
-						products={products}
-						addItem={addItem}
-					/>
-				)}
+				component={Products}
+				// render={() => (
+				// 	<Products
+				// 		products={products}
+				// 		addItem={addItem}
+				// 	/>
+				// )}
 			/>
 
 			<Route
 				path="/cart"
 				render={() => <ShoppingCart cart={cart} removeItem={removeItem}/>}
 			/>
+			</ProductContext.Provider>
+
 		</div>
 	);
 }
